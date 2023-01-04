@@ -1,28 +1,18 @@
-/* eslint-disable no-param-reassign */
-/* eslint-disable no-restricted-syntax */
-function parse(obj, n = 1) {
-  let objParse = '{\n';
-  const keys = Object.keys(obj);
-  for (const key of keys) {
-    if (typeof obj[key] === 'object') {
-      obj[key] = parse(obj[key], n + 1);
-    }
-    const propertyString = `  ${key}: ${obj[key]}\n`;
-    objParse += propertyString;
+import fs from 'fs';
+import path from 'path';
+import { cwd } from 'node:process';
+import yaml from 'js-yaml';
+
+const parse = (filepath) => {
+  const getpath = path.resolve(cwd(), filepath);
+  const readfile = fs.readFileSync(getpath, 'utf-8');
+  const format = path.extname(filepath);
+  if (format === '.yaml' || format === '.yml') {
+    return yaml.load(readfile);
+  } if (format === '.json') {
+    return JSON.parse(readfile);
   }
-  objParse += '}';
-  return objParse;
-}
-
-const testObj = {
-  sdf: 123,
-  sdfasfsfe: 2345,
-  dture: {
-    e8ruwer: 215,
-  },
+  return console.log('wrong format or path');
 };
-
-console.log(parse(testObj));
-console.log(Object.toString(testObj));
 
 export default parse;
