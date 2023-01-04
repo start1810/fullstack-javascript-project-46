@@ -1,4 +1,6 @@
-const parse = (obj, n = 1) => {
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-restricted-syntax */
+function parse(obj, n = 1) {
   let objParse = '{\n';
   const keys = Object.keys(obj);
   for (const key of keys) {
@@ -10,7 +12,7 @@ const parse = (obj, n = 1) => {
   }
   objParse += '}';
   return objParse;
-};
+}
 
 const testObj = {
   sdf: 123,
