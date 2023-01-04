@@ -22,7 +22,6 @@
   "homepage": "https://github.com/start1810/fullstack-javascript-project-46#readme",
   "dependencies": {
     "commander": "^9.4.1",
-    "exlint": "^0.1.6",
     "lodash": "^4.17.21"
   },
   "devDependencies": {
